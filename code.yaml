@@ -1,0 +1,8 @@
+rules:
+  - id: java-command-injection
+    languages: [java]
+    severity: ERROR
+    message: "Use of Runtime.exec() can lead to command injection. Consider safer alternatives."
+    metadata:
+      category: security
+    pattern: Runtime.getRuntime().exec($X)
