@@ -1,8 +1,8 @@
 rules:
-  - id: java-command-injection
+  - id: sql-injection-risk
+    pattern: |
+      $DB.executeQuery("SELECT * FROM users WHERE username = '" + $USER_INPUT + "'")
+    message: |
+      Avoid building SQL queries using string concatenation. Use prepared statements instead to prevent SQL injection.
     languages: [java]
     severity: ERROR
-    message: "Use of Runtime.exec() can lead to command injection. Consider safer alternatives."
-    metadata:
-      category: security
-    pattern: Runtime.getRuntime().exec($X)
